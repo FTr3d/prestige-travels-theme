@@ -1,0 +1,152 @@
+/*
+Theme Name: Prestige Travels
+Theme URI: https://prestigetravels.nl
+Description: Custom boutique travel agency theme (v1.4 Spec)
+Author: Prestige Travels
+Version: 1.4
+Text Domain: prestige-travels
+*/
+
+:root {
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-gold:  #E7B751;
+  --color-offwhite: #F5F3EF;
+  --color-charcoal: #1A1A1A;
+}
+
+/* Typography */
+@font-face {
+  font-family: 'Carla Sans';
+  src: url('./assets/fonts/CarlaSans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Agatho Light';
+  src: url('./assets/fonts/AgathoLight-Regular.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Agatho Light', serif;
+  color: var(--color-charcoal);
+  background-color: var(--color-white);
+  line-height: 1.7;
+  font-size: 17px;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, .label-text {
+  font-family: 'Carla Sans', sans-serif;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+  font-weight: normal;
+}
+
+h1 { font-size: clamp(56px, 5vw, 64px); letter-spacing: 0.08em; line-height: 1.1; }
+h2 { font-size: clamp(36px, 4vw, 44px); letter-spacing: 0.06em; line-height: 1.2; }
+h3 { font-size: 28px; letter-spacing: 0.05em; }
+
+a { color: inherit; text-decoration: none; transition: 0.3s ease; }
+
+/* Layout & Sections */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 768px) { .container { padding: 0 20px; } }
+
+.section-dark { background: var(--color-black); color: var(--color-white); padding: 140px 0; }
+.section-light { background: var(--color-white); color: var(--color-black); padding: 140px 0; }
+.section-offwhite { background: var(--color-offwhite); color: var(--color-black); padding: 140px 0; }
+
+grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+
+@media (max-width: 992px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .section-dark, .section-light, .section-offwhite { padding: 80px 0; }
+}
+
+/* Header */
+.site-header {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 24px 0; transition: all 0.4s ease;
+  background: transparent; color: var(--color-white);
+}
+.site-header.scrolled { background: var(--color-black); padding: 16px 0; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+.header-nav { display: flex; gap: 32px; font-family: 'Carla Sans', sans-serif; font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; }
+.header-actions { display: flex; gap: 16px; align-items: center; }
+
+/* Buttons */
+.btn-primary, .btn-outline {
+  font-family: 'Carla Sans', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  padding: 16px 32px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary { background: var(--color-gold); color: var(--color-black); }
+.btn-primary:hover { background: #d4a342; }
+.btn-outline { border: 1px solid currentColor; background: transparent; }
+.btn-outline:hover { background: currentColor; color: var(--color-black); }
+.cta-pair { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
+
+/* Cards */
+.card { position: relative; overflow: hidden; background: var(--color-black); color: var(--color-white); }
+.card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.card:hover img { transform: scale(1.05); }
+.card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 50%); display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; }
+
+.card-itinerary { aspect-ratio: 3/4; }
+.card-destination { aspect-ratio: 16/9; }
+
+/* Tier Badges */
+.tier-badge {
+  position: absolute; top: 24px; right: 24px; z-index: 10;
+  font-family: 'Carla Sans', sans-serif; font-size: 12px; letter-spacing: 0.1em;
+  padding: 6px 16px; text-transform: uppercase;
+}
+.tier-curated { border: 1px solid var(--color-white); color: var(--color-white); background: transparent; }
+.tier-premier { border: 1px solid var(--color-gold); color: var(--color-white); background: transparent; }
+.tier-prestige { background: var(--color-gold); color: var(--color-black); }
+
+/* Accordions (FAQs & Payment Plans) */
+.accordion-item { border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 1rem; }
+.section-light .accordion-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.accordion-header {
+  width: 100%; text-align: left; background: none; border: none;
+  font-family: 'Carla Sans', sans-serif; font-size: 20px; padding: 1.5rem 0;
+  cursor: pointer; color: inherit; text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; opacity: 0; }
+.accordion-content.expanded { max-height: 2000px; opacity: 1; padding-bottom: 1.5rem; transition: max-height 0.6s ease-in, opacity 0.6s ease-in; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; text-align: left; }
+th, td { border: 1px solid rgba(0,0,0,0.1); padding: 16px; }
+th { font-family: 'Carla Sans', sans-serif; text-transform: uppercase; font-size: 14px; background: var(--color-offwhite); }
+.section-dark table th, .section-dark table td { border-color: rgba(255,255,255,0.2); }
+.section-dark table th { background: #111; color: var(--color-white); }
+
+/* Heroes */
+.hero-full { height: 100vh; position: relative; display: flex; align-items: center; color: var(--color-white); }
+.hero-full img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.hero-full::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: -1; }
+.hero-half { height: 60vh; position: relative; display: flex; align-items: center; color: var(--color-white); background: var(--color-black); padding-top: 80px; }
+
+/* Footer */
+.site-footer { background: var(--color-black); color: var(--color-white); padding: 80px 0 40px; font-size: 14px; }
+.footer-logo { text-align: center; margin-bottom: 60px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 60px; padding-top: 24px; display: flex; justify-content: space-between; color: rgba(255,255,255,0.6); }
